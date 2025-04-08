@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const SingleView = (props) => {
   const {item, setSelectedItem} = props;
 
@@ -5,11 +7,6 @@ const SingleView = (props) => {
     setSelectedItem(null);
   };
   return (
-    // TODO: Add JSX for displaying a mediafile here
-    // - use e.g. a <dialog> element for creating a modal
-    // - use item prop to render the media item details
-    // - use img tag for displaying images
-    // - use video tag for displaying videos
     <>
       {item && (
         <dialog open>
@@ -26,14 +23,10 @@ const SingleView = (props) => {
     </>
   );
 };
+
+SingleView.propTypes = {
+  item: PropTypes.object.isRequired,
+  setSelectedItem: PropTypes.func.isRequired,
+};
+
 export default SingleView;
-
-/*
-dialog {
-top: 0;
-}
-
-dialog button {
-display:block
-}
-*/
