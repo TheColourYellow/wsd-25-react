@@ -5,13 +5,27 @@ import {fetchData} from '../../utils/fetchData.js';
 
 const Home = () => {
   const [mediaArray, setMediaArray] = useState([]);
+  //const [users, setUsers] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   console.log(selectedItem);
 
   const getMedia = async () => {
     try {
-      const data = await fetchData(import.meta.env.VITE_MEDIA_API + '/media');
-      setMediaArray(data);
+      const mediaData = await fetchData(
+        import.meta.env.VITE_MEDIA_API + '/media',
+      );
+      //setMediaArray(mediaData);
+
+      //const userIds = data.map(({user_id}) => user_id);
+      const url = import.meta.env.VITE_AUTH_API;
+      const newData = await Promise.all(
+        mediaData.map(async (item) => {
+          const data = await fetchData(`${url}/users/${item.user_id}`);
+          return {...item, username: data.username};
+        }),
+      );
+      console.log('newdata', newData);
+      setMediaArray(newData);
     } catch (error) {
       console.log('error', error);
     }
@@ -31,6 +45,7 @@ const Home = () => {
           <tr>
             <th>Thumbnail</th>
             <th>Title</th>
+            <th>Owner</th>
             <th>Description</th>
             <th>Created</th>
             <th>Size</th>
