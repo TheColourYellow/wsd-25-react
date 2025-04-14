@@ -1,17 +1,16 @@
-import {/*useEffect,*/ useState} from 'react';
+import {useEffect, useState} from 'react';
 import MediaRow from '../components/Mediarow';
 import SingleView from '../components/SingleView';
-//import {fetchData} from '../../utils/fetchData.js';
 import useMedia from '../hooks/apiHooks.js';
 
 const Home = () => {
   const mediaArray = useMedia();
-  //const [users, setUsers] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
 
   return (
     <>
       <h2>My Media</h2>
+      <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <table>
         <thead>
           <tr>
@@ -35,7 +34,6 @@ const Home = () => {
           ))}
         </tbody>
       </table>
-      <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
     </>
   );
 };
