@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import MediaRow from '../components/Mediarow';
 import SingleView from '../components/SingleView';
-import useMedia from '../hooks/apiHooks.js';
+import {useMedia} from '../hooks/apiHooks.js';
 
 const Home = () => {
   const mediaArray = useMedia();
