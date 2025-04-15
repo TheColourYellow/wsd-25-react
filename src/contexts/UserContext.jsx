@@ -11,29 +11,17 @@ const UserProvider = ({children}) => {
   const {getUserByToken} = useUser();
   const navigate = useNavigate();
 
-  // login, logout and autologin functions are here instead of components
   const handleLogin = async (credentials) => {
-    try {
-      // TODO: post login credentials to API
-      // TODO: set token to local storage
-      // TODO: set user to state
-      // TODO: navigate to home
-      const loginResult = await postLogin(credentials);
-      window.localStorage.setItem('token', loginResult.token);
-      setUser(loginResult.user);
-      navigate('/');
-    } catch (e) {
-      console.log(e.message);
-    }
+    const loginResult = await postLogin(credentials);
+    window.localStorage.setItem('token', loginResult.token);
+    setUser(loginResult.user);
+    navigate('/');
   };
 
   const handleLogout = () => {
     try {
-      // TODO: remove token from local storage
       localStorage.removeItem('token');
-      // TODO: set user to null
       setUser(null);
-      // TODO: navigate to home
       navigate('/');
     } catch (e) {
       console.log(e.message);
@@ -47,7 +35,14 @@ const UserProvider = ({children}) => {
       // TODO: if token exists, get user data from API
       // TODO: set user to state
       // TODO: navigate to home
+      const token = localStorage.getItem('token');
+      if (token) {
+        const userResponse = await getUserByToken(token);
+        setUser(userResponse.user);
+        navigate('/');
+      }
     } catch (e) {
+      handleLogout();
       console.log(e.message);
     }
   };
