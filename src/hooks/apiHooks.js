@@ -47,11 +47,6 @@ const useAuthentication = () => {
       import.meta.env.VITE_AUTH_API + '/auth/login',
       fetchOptions,
     );
-
-    console.log('loginResult', loginResult.token);
-
-    window.localStorage.setItem('token', loginResult.token);
-
     return loginResult;
   };
 
