@@ -7,7 +7,7 @@ import Upload from './views/Upload';
 import Single from './views/Single';
 import Login from './views/Login';
 import Logout from './views/Logout';
-import {UserProvider} from './contexts/userContext';
+import {UserProvider} from './contexts/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
@@ -18,7 +18,7 @@ const App = () => {
         <Routes>
           <Route element={<Layout />}>
             <Route
-              path="profile"
+              path="/profile"
               element={
                 <ProtectedRoute>
                   <Profile />
@@ -26,16 +26,16 @@ const App = () => {
               }
             />
             <Route
-              path="upload"
+              path="/upload"
               element={
                 <ProtectedRoute>
                   <Upload />
                 </ProtectedRoute>
               }
             />
-            <Route path="single" element={<Single />} />
-            <Route path="login" element={<Login />} />
-            <Route path="logout" element={<Logout />} />
+            <Route path="/single" element={<Single />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/" element={<Home />} />
           </Route>
         </Routes>
