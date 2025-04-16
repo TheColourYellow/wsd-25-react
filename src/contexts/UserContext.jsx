@@ -1,7 +1,7 @@
 // UserContext.jsx
 import {createContext, useState} from 'react';
 import {useAuthentication, useUser} from '../hooks/apiHooks';
-import {useNavigate} from 'react-router';
+import {useLocation, useNavigate} from 'react-router';
 
 const UserContext = createContext(null);
 
@@ -10,6 +10,7 @@ const UserProvider = ({children}) => {
   const {postLogin} = useAuthentication();
   const {getUserByToken} = useUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (credentials) => {
     const loginResult = await postLogin(credentials);
@@ -31,15 +32,12 @@ const UserProvider = ({children}) => {
   // handleAutoLogin is used when the app is loaded to check if there is a valid token in local storage
   const handleAutoLogin = async () => {
     try {
-      // TODO: get token from local storage
-      // TODO: if token exists, get user data from API
-      // TODO: set user to state
-      // TODO: navigate to home
       const token = localStorage.getItem('token');
       if (token) {
         const userResponse = await getUserByToken(token);
         setUser(userResponse.user);
-        navigate('/');
+        console.log('location', location);
+        navigate(location.pathname);
       }
     } catch (e) {
       handleLogout();
