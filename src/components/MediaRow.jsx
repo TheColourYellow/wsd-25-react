@@ -10,9 +10,13 @@ const MediaRow = (props) => {
   };
   return (
     // TODO: move <tr> element in foreach from Home.jsx here
-    <tr key={item.media_id}>
+    <tr className="*:border-2 *:border-[#ccc] *:p-4" key={item.media_id}>
       <td>
-        <img src={item.thumbnail} alt={item.title} />
+        <img
+          src={item.thumbnail}
+          alt={item.title}
+          className="h-52 object-cover"
+        />
       </td>
       <td>{item.title}</td>
       <td>{item.username}</td>
@@ -20,9 +24,17 @@ const MediaRow = (props) => {
       <td>{new Date(item.created_at).toLocaleString('fi-FI')}</td>
       <td>{item.filesize}</td>
       <td>{item.media_type}</td>
-      <td>
+      <td className="p-0!">
         {/* <button onClick={handleClick}>View</button> */}
-        <Link to="/single" state={{item}}>
+        <Link
+          className="p-8 hover:bg-amber-300 hover:text-gray-900"
+          to="/single"
+          state={{item}}
+          onClick={(event) => {
+            event.preventDefault();
+            setSelectedItem(item);
+          }}
+        >
           View
         </Link>
       </td>

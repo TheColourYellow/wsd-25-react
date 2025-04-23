@@ -9,7 +9,10 @@ const SingleView = (props) => {
   return (
     <>
       {item && (
-        <dialog open>
+        <dialog
+          className="fixed top-[5%] left-[10%] z-[9999] h-dvh overflow-auto"
+          open
+        >
           <button onClick={handleClick}>&#10005;</button>
           {item.media_type.includes('video') ? (
             <video src={item.filename} controls />

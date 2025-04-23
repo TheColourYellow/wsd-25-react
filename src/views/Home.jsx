@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import MediaRow from '../components/Mediarow';
 import SingleView from '../components/SingleView';
 import {useMedia} from '../hooks/apiHooks.js';
@@ -9,11 +9,11 @@ const Home = () => {
 
   return (
     <>
-      <h2>My Media</h2>
+      <h2 className="my-4 font-mono text-2xl">My Media</h2>
       <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <table>
         <thead>
-          <tr>
+          <tr className="*:border-2 *:border-[#ccc] *:p-4">
             <th>Thumbnail</th>
             <th>Title</th>
             <th>Owner</th>

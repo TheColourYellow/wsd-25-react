@@ -11,25 +11,50 @@ const Layout = () => {
   return (
     <div>
       <nav>
-        <ul>
+        <ul className="flex justify-end overflow-hidden bg-stone-700">
           <li>
-            <Link to="/">Home</Link>
+            <Link
+              className="block bg-stone-700 p-4 text-center text-stone-50 hover:bg-stone-950"
+              to="/"
+            >
+              Home
+            </Link>
           </li>
           {user ? (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link
+                  className="block bg-stone-700 p-4 text-center text-stone-50 hover:bg-stone-950"
+                  to="/profile"
+                >
+                  Profile
+                </Link>
               </li>
               <li>
-                <Link to="/upload">Upload</Link>
+                <Link
+                  className="block bg-stone-700 p-4 text-center text-stone-50 hover:bg-stone-950"
+                  to="/upload"
+                >
+                  Upload
+                </Link>
               </li>
               <li>
-                <Link to="/logout">Logout</Link>
+                <Link
+                  className="block bg-stone-700 p-4 text-center text-stone-50 hover:bg-stone-950"
+                  to="/logout"
+                >
+                  Logout
+                </Link>
               </li>
             </>
           ) : (
             <li>
-              <Link to="/login">Login</Link>
+              <Link
+                className="block bg-stone-700 p-4 text-center text-stone-50 hover:bg-stone-950"
+                to="/login"
+              >
+                Login
+              </Link>
             </li>
           )}
         </ul>

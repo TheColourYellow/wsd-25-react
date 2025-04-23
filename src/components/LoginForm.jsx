@@ -1,5 +1,6 @@
 import useForm from '../hooks/formHooks';
 import {useUserContext} from '../hooks/contextHooks';
+import TextInput from './ui/TextInput';
 
 const LoginForm = () => {
   const {handleLogin} = useUserContext();
@@ -27,26 +28,22 @@ const LoginForm = () => {
     <>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="loginuser">Username</label>
-          <input
-            name="username"
-            type="text"
-            id="loginuser"
-            onChange={handleInputChange}
-            autoComplete="username"
-          />
-        </div>
-        <div>
-          <label htmlFor="loginpassword">Password</label>
-          <input
-            name="password"
-            type="password"
-            id="loginpassword"
-            onChange={handleInputChange}
-            autoComplete="current-password"
-          />
-        </div>
+        <TextInput
+          label="username"
+          name="username"
+          type="text"
+          id="loginuser"
+          onChange={handleInputChange}
+          autoComplete="username"
+        />
+        <TextInput
+          label="Password"
+          name="password"
+          type="password"
+          id="loginpassword"
+          onChange={handleInputChange}
+          autoComplete="current-password"
+        />
         <button type="submit">Login</button>
       </form>
     </>
